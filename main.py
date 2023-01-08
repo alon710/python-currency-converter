@@ -27,7 +27,7 @@ def get_exchange_rate(base_currency: str, target_currency: str):
 
 
 @app.get("/convert/")
-def convert(base_currency: str, target_currency: str, amount: float) -> float:
+def convert(base_currency: str, target_currency: str, amount: float) -> dict:
     exchange_rate = get_exchange_rate(
         base_currency=base_currency, target_currency=target_currency
     )
