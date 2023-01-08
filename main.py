@@ -25,11 +25,17 @@ def get_exchange_rate(base_currency: str, target_currency: str):
     ).json()["data"]
 
 
-@app.get("/convert")
-def convert(
-    query: str = Query(None, base_currency="ILS", amount=0, target_currency="USD")
-) -> float:
-    pass
+@app.get("/convert/")
+def convert(base_currency: str, target_currency: str, amount: float) -> float:
+    exchange_rate = get_exchange_rate(
+        base_currency=base_currency, target_currency=target_currency
+    )
+    return {
+        "base_currency": base_currency,
+        "target_currency": target_currency,
+        "value": amount * exchange_rate[target_currency],
+        "amount": amount,
+    }
 
 
 if __name__ == "__main__":
