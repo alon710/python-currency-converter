@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException
 
 from currency_helper import base_get_request
 
@@ -15,6 +15,7 @@ def get_currency(currency):
     currencies = get_currencies()
     if currency in currencies:
         return currencies[currency]
+    raise HTTPException(status_code=400, detail="Currency does not exist")
 
 
 @app.get("/exchange_rate")
