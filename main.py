@@ -11,7 +11,7 @@ def get_currencies():
 
 
 @app.get("/currency/{currency}")
-def get_currency(currency):
+def get_currency(currency: str):
     currencies = get_currencies()
     if currency in currencies:
         return currencies[currency]
