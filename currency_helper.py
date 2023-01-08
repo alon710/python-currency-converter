@@ -10,4 +10,4 @@ HEADERS = {"apikey": API_KEY}
 
 def base_get_request(path: str, url_params: dict = None) -> requests.Response:
     endpoint_url = urljoin(BASE_URL, path)
-    return requests.get(url=endpoint_url, headers=HEADERS)
+    return requests.get(url=endpoint_url, headers=HEADERS, params=url_params)
