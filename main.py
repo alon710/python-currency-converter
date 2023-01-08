@@ -10,8 +10,7 @@ app = FastAPI()
 
 @app.get("/currencies")
 def currencies():
-    res = base_get_request(path="/v1/currencies")
-    return {"Hello": "World"}
+    return base_get_request(path="/v1/currencies").json()
 
 
 if __name__ == "__main__":
