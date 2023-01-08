@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/currencies")
 def get_currencies():
-    return base_get_request(path="/v1/currencies").json()["data"]
+    return base_get_request(path="/v1/currencies")["data"]
 
 
 @app.get("/currency/{currency}")
@@ -22,7 +22,7 @@ def get_exchange_rate(base_currency: str, target_currency: str):
     return base_get_request(
         path="/v1/latest",
         url_params={"base_currency": base_currency, "currencies": [target_currency]},
-    ).json()["data"]
+    )["data"]
 
 
 @app.get("/convert/")
