@@ -1,6 +1,3 @@
-import os
-from typing import Union
-
 from fastapi import FastAPI, Query
 
 from currency_helper import base_get_request
