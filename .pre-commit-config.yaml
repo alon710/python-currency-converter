@@ -17,3 +17,8 @@ repos:
     hooks:
       - id: sourcery
         args: [ --diff=git diff HEAD, --no-summary ]
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.0.0
+    hooks:
+      - id: autoflake
