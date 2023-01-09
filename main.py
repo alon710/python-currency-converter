@@ -1,11 +1,13 @@
-import os
-from typing import Union
-
 from fastapi import FastAPI
 
 from currency_helper import base_get_request
 
 app = FastAPI()
+
+
+@app.get("/")
+def index():
+    return {"Hello": "World"}
 
 
 @app.get("/currencies")
