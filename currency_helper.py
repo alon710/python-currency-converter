@@ -14,4 +14,4 @@ def base_get_request(path: str, url_params: dict = None) -> requests.Response:
     response = requests.get(url=endpoint_url, headers=HEADERS, params=url_params)
     if response.ok:
         return response.json()
-    raise HTTPException(status_code=500, detail="Invalid response")
+    raise HTTPException(status_code=400, detail="Invalid response")
