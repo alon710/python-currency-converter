@@ -5,6 +5,11 @@ from currency_helper import base_get_request
 app = FastAPI()
 
 
+@app.get("/")
+def index():
+    return {"Hello": "World"}
+
+
 @app.get("/currencies")
 def get_currencies():
     return base_get_request(path="/v1/currencies")["data"]
