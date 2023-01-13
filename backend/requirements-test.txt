@@ -1,4 +1,4 @@
 pytest
 httpx
 fastapi
-requests
+python-dotenv
