@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 
-from currency_helper import base_get_request
+from backend.currency_helper import base_get_request
 
 app = FastAPI()
 
