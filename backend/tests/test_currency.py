@@ -14,7 +14,7 @@ def test_currency_list_status_code():
 
 
 def test_specific_currency_value():
-    response = client.get("/currency/", params={"currency_code": "USD"})
+    response = client.get("/currency", params={"currency_code": "USD"})
     assert response.status_code == 200
     assert response.json() == {
         "symbol": "$",
