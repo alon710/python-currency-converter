@@ -5,13 +5,11 @@ import requests
 from cachetools import TTLCache
 from fastapi import APIRouter, HTTPException
 
+from .cache import cache
+
 router = APIRouter(
     prefix="/currency",
     tags=["currency"],
-)
-cache = TTLCache(
-    maxsize=os.getenv("TTL_MAX_SIZE"),
-    ttl=os.getenv("TTL_TIME_IN_SEC"),
 )
 
 
