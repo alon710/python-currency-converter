@@ -1,11 +1,13 @@
 from dotenv import load_dotenv
+
+load_dotenv()
+
+
 from fastapi.testclient import TestClient
 
 from backend.routes.currency import router
 
 client = TestClient(router)
-
-load_dotenv()
 
 
 def test_currency_list_status_code():
@@ -14,7 +16,7 @@ def test_currency_list_status_code():
 
 
 def test_specific_currency_value():
-    response = client.get("/currency", params={"currency_code": "USD"})
+    response = client.get("/currency/USD")
     assert response.status_code == 200
     assert response.json() == {
         "symbol": "$",

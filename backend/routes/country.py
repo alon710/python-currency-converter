@@ -2,7 +2,10 @@ import os
 from urllib.parse import urljoin
 
 import requests
+from cachetools import TTLCache
 from fastapi import APIRouter, HTTPException
+
+from .cache import cache
 
 router = APIRouter(
     prefix="/country",
@@ -19,6 +22,8 @@ def base_get_request(path: str, params: dict = None) -> requests.Response:
     raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
-@router.get("/")
+@router.get("/{country_name}")
 def get_country(country_name: str):
-    return base_get_request(path=country_name)[0]["currencies"]
+    if country_name not in cache:
+        cache[country_name] = base_get_request(path=country_name)[0]["currencies"]
+    return cache[country_name]

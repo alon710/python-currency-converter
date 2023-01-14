@@ -2,7 +2,10 @@ import os
 from urllib.parse import urljoin
 
 import requests
+from cachetools import TTLCache
 from fastapi import APIRouter, HTTPException
+
+from .cache import cache
 
 router = APIRouter(
     prefix="/currency",
@@ -24,14 +27,18 @@ def base_get_request(path: str, url_params: dict = None) -> requests.Response:
 
 @router.get("/list")
 def get_currencies():
-    return base_get_request(path="/v1/currencies")["data"]
+    if "currencies" not in cache:
+        cache["currencies"] = base_get_request(path="/v1/currencies")["data"]
+    return cache["currencies"]
 
 
-@router.get("/")
+@router.get("/{currency_code}")
 def get_currency(currency_code: str):
     currencies = get_currencies()
     if currency_code in currencies:
-        return currencies[currency_code]
+        if currency_code not in cache:
+            cache[currency_code] = currencies[currency_code]
+        return cache[currency_code]
     raise HTTPException(status_code=400, detail="Currency does not exist")
 
 

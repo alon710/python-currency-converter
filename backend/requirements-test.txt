@@ -3,3 +3,4 @@ httpx
 fastapi
 requests
 python-dotenv
+cachetools

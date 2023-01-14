@@ -1,26 +1,21 @@
+import uvicorn
+from dotenv import load_dotenv
 from fastapi import FastAPI
-from routes import country, currency
 
-app = FastAPI()
-
-app.include_router(
-    router=currency.router,
-)
-app.include_router(
-    router=country.router,
-)
-
-
-@app.get("/")
-def index():
-    return {"Hello": "World"}
-
+load_dotenv()
 
 if __name__ == "__main__":
-    import uvicorn
-    from dotenv import load_dotenv
+    from routes import country, currency
 
-    load_dotenv()
+    app = FastAPI()
+
+    app.include_router(
+        router=currency.router,
+    )
+    app.include_router(
+        router=country.router,
+    )
+
     uvicorn.run(
         app,
         host="0.0.0.0",
