@@ -27,7 +27,7 @@ def get_currencies():
     return base_get_request(path="/v1/currencies")["data"]
 
 
-@router.get("/")
+@router.get("/{currency_code}")
 def get_currency(currency_code: str):
     currencies = get_currencies()
     if currency_code in currencies:
