@@ -1,10 +1,13 @@
 from fastapi import FastAPI
-from routes import currency
+from routes import country, currency
 
 app = FastAPI()
 
 app.include_router(
     router=currency.router,
+)
+app.include_router(
+    router=country.router,
 )
 
 

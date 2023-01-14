@@ -11,7 +11,7 @@ router = APIRouter(
 
 
 def base_get_request(path: str, url_params: dict = None) -> requests.Response:
-    base_url = os.getenv("BASE_URL")
+    base_url = os.getenv("BASE_URL_CURRENCY")
     headers = {"apikey": os.getenv("API_KEY")}
 
     endpoint_url = urljoin(base_url, path)
