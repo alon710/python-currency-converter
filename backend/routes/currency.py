@@ -9,7 +9,10 @@ router = APIRouter(
     prefix="/currency",
     tags=["currency"],
 )
-cache = TTLCache(maxsize=1024, ttl=600)
+cache = TTLCache(
+    maxsize=os.getenv("TTL_MAX_SIZE"),
+    ttl=os.getenv("TTL_TIME_IN_SEC"),
+)
 
 
 def base_get_request(path: str, url_params: dict = None) -> requests.Response:
