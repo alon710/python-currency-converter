@@ -23,6 +23,6 @@ def base_get_request(path: str, params: dict = None) -> requests.Response:
 
 @router.get("/")
 def get_country(country_name: str):
-    if not country_name in cache:
-            cache[country_name] = base_get_request(path=country_name)[0]["currencies"]
+    if country_name not in cache:
+        cache[country_name] = base_get_request(path=country_name)[0]["currencies"]
     return cache[country_name]
