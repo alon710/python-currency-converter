@@ -3,9 +3,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-from fastapi.testclient import TestClient
-
 from backend.routes.currency import router
+from fastapi.testclient import TestClient
 
 client = TestClient(router)
 
